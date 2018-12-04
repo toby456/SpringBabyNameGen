@@ -1,5 +1,6 @@
 package com.qa.sevice;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import org.springframework.stereotype.Service;
@@ -14,27 +15,20 @@ public class BabyNameGen {
 		if (length < 12) {
 		int n = length - toStart.length();
 		int a = BabyNameConstants.Letters.length();
+		String name = toStart;
+		ArrayList letter = new ArrayList();
+	
 		
-		StringBuilder sb = new StringBuilder();
-		
-		Random r = new Random();
-		
-//		r.nextInt(a)
+	
 		
 		for (int i = 0; i < n; i++) {
-			sb.append(BabyNameConstants.Letters.charAt(0));
+			letter.add(BabyNameConstants.Letters.charAt((int) Math.round(Math.random()*BabyNameConstants.Letters.length())));
+			name += letter.get(i); 
+			
 		}
 		
-		String str = sb.toString();
 		
-		//str = str.toLowerCase();
-		
-		String name = toStart + str;
-		
-		String fs = name.substring(0,1).toUpperCase() + name.substring(1);
-		
-		
-		return str;
+		return name;
 		
 		
 		}
