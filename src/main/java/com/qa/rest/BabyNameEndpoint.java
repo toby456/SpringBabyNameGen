@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.qa.sevice.BabyNameGen;
 
-@RequestMapping("${base_endpoint}")
+@RequestMapping("/babyname")
 @RestController
 @CrossOrigin
 public class BabyNameEndpoint {
@@ -17,9 +17,10 @@ public class BabyNameEndpoint {
 	@Autowired
 	private BabyNameGen service;
 	
-	@PostMapping("${create_endpoint}")
+	@PostMapping("/create/{length}/{toStart}")
 	public String createBabyName(@PathVariable ("length") int length, @PathVariable ("toStart") String toStart) {
 		return service.generateBabyName(length, toStart);
 	}
-
+	
+	
 }
