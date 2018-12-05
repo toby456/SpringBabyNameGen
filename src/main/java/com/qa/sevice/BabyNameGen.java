@@ -1,43 +1,40 @@
 package com.qa.sevice;
 
+import java.util.ArrayList;
 import java.util.Random;
 
-import javax.persistence.EntityManager;
+import org.springframework.stereotype.Service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.qa.constants.BabyNameConstants;;
 
-import com.qa.constants.BabyNameConstants;
-import com.qa.repository.BabyNameRepo;;
-
+@Service
 public class BabyNameGen {
 
-	@Autowired
-	private BabyNameRepo bbyNameRepo;
 
 	public String generateBabyName(int length, String toStart) {
 		if (length < 12) {
 		int n = length - toStart.length();
 		int a = BabyNameConstants.Letters.length();
-		StringBuilder sb = new StringBuilder();
+		String name = toStart;
+		ArrayList letter = new ArrayList();
+	
 		
-		Random r = new Random();
+	
 		
 		for (int i = 0; i < n; i++) {
-			sb.append(BabyNameConstants.Letters.charAt(r.nextInt(a)));
+			letter.add(BabyNameConstants.Letters.charAt((int) Math.round(Math.random()*BabyNameConstants.Letters.length())));
+			name += letter.get(i); 
+			
 		}
 		
-		String str = sb.toString();
 		
-		String name = toStart + str;
+		return name;
 		
-		String babyName = name.toLowerCase().substring(0,1).toUpperCase() + name.substring(1);
-		
-		return bbyNameRepo.createBabyName(babyName);
 		
 		}
 		
 		else return BabyNameConstants.NAME_TOO_LONG;
-		
+			
 	}
 
 }

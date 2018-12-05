@@ -1,12 +1,8 @@
 package com.qa.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
 
-@Entity
 public class BabyName {
 	
-	@Id
 	private String babyName;
 
 	public BabyName() {
